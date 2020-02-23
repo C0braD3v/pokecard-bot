@@ -11,15 +11,14 @@ module.exports.run = async (client, message, args, _isOwner) => {
     .then(cards => {
         let cardEmbed = new Discord.MessageEmbed()
         cardEmbed.setAuthor("Top 10 search results for card: " + search)
-        await for(let i = 0; i < 10; i++) {
+        for(let i = 0; i < 10; i++) {
             cardEmbed.addField(i + 1 + '. ' + cards[i].name, "ID: " + `[**\`${cards[i].id}\`**](${cards[i].imageUrl})`, true)
         }
         cardEmbed.setColor("RANDOM")
         cardEmbed.setTimestamp()
         cardEmbed.setFooter("Requested by: " + message.author.tag)
-        message.send(cardEmbed)
+        message.channel.send(cardEmbed)
     })
-// "**Card Name: **" + cards[0].name + "," + "**Card ID:** " + cards[0].id
 }
     catch (error) {
     console.log(error)
